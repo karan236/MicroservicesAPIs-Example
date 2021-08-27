@@ -1,0 +1,21 @@
+version: '3'
+
+services: 
+  videoapi-service:
+    build: ./videoAPI
+    ports: 
+      - 5001:80
+  
+  jwtapi-service:
+    build: ./APIJWT
+    ports: 
+      - 5002:80
+
+  apigateway-service:
+    build: ./Gateway
+    ports: 
+      - 5003:80
+    depends_on: 
+      - videoapi-service
+      - jwtapi-service
+  
